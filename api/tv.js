@@ -35,11 +35,9 @@ export default async function handler(req, res) {
         m3u += "#KODIPROP:inputstream.adaptive.manifest_type=dash\n";
         m3u += "#KODIPROP:inputstream.adaptive.license_type=clearkey\n";
 
-        // license_key đã được cung cấp sẵn
-        if (ch.license_key) {
-          m3u += `#KODIPROP:inputstream.adaptive.license_key=${ch.license_key}\n`;
-        }
-      }
+        const licenseKey = `${ch.clearKey.keyId}:${ch.clearKey.key}`;
+
+m3u += `#KODIPROP:inputstream.adaptive.license_key=${licenseKey}\n`;
 
       // URL stream
       m3u += `${url}\n`;
